@@ -1,0 +1,150 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.5rem;
+  --background: #fbfbff;
+  --foreground: #07134f;
+  --card: #ffffff;
+  --card-foreground: #07134f;
+  --popover: #ffffff;
+  --popover-foreground: #07134f;
+  --primary: #0033ff;
+  --primary-foreground: #ffffff;
+  --secondary: #ffccf2;
+  --secondary-foreground: #07134f;
+  --muted: #f3f0ff;
+  --muted-foreground: #4d5294;
+  --accent: #977dff;
+  --accent-foreground: #07134f;
+  --destructive: #b83378;
+  --border: #c8bfff;
+  --input: #c8bfff;
+  --ring: #977dff;
+  --chart-1: #0033ff;
+  --chart-2: #977dff;
+  --chart-3: #ffccf2;
+  --chart-4: #6b62ff;
+  --chart-5: #07134f;
+  --sidebar: #fbfbff;
+  --sidebar-foreground: #07134f;
+  --sidebar-primary: #0033ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffccf2;
+  --sidebar-accent-foreground: #07134f;
+  --sidebar-border: #c8bfff;
+  --sidebar-ring: #977dff;
+  --page-gradient:
+    radial-gradient(circle at 14% 8%, rgba(255, 204, 242, 0.35), transparent 28%),
+    radial-gradient(circle at 88% 18%, rgba(151, 125, 255, 0.22), transparent 32%),
+    radial-gradient(circle at 50% 100%, rgba(0, 51, 255, 0.08), transparent 34%),
+    linear-gradient(180deg, #ffffff 0%, #fbfbff 45%, #f8f5ff 100%);
+  --component-gradient:
+    linear-gradient(135deg, rgba(255, 204, 242, 0.84) 0%, rgba(151, 125, 255, 0.48) 55%, rgba(0, 51, 255, 0.2) 100%),
+    rgba(255, 255, 255, 0.8);
+  --component-gradient-strong:
+    linear-gradient(135deg, #ffccf2 0%, #977dff 48%, #0033ff 100%);
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 2px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--page-gradient);
+  background-attachment: fixed;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: #ffccf2;
+  color: #07134f;
+}
+
+.hero-scene {
+  background: var(--page-gradient);
+}
+
+.bg-background {
+  background: var(--page-gradient);
+}
+
+.bg-background\/95 {
+  background: var(--component-gradient);
+  backdrop-filter: blur(18px);
+}
+
+.bg-card,
+.bg-popover,
+.bg-secondary,
+.bg-muted,
+.bg-accent {
+  background: var(--component-gradient);
+}
+
+.bg-primary {
+  background: var(--component-gradient-strong);
+}
+
+@layer base {
+  .maplibregl-popup-content {
+    @apply bg-transparent! shadow-none! p-0! rounded-none!;
+  }
+  .maplibregl-popup-tip {
+    @apply hidden!;
+  }
+}
