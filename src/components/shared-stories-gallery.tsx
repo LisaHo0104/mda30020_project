@@ -108,8 +108,8 @@ export function SharedStoriesGallery() {
           maxVerticalRotationDeg={0}
           minRadius={600}
           openedImageBorderRadius="30px"
-          openedImageHeight="min(78vh, 44rem)"
-          openedImageWidth="min(92vw, 52rem)"
+          openedImageHeight="min(72dvh, 44rem)"
+          openedImageWidth="min(88vw, 52rem)"
           overlayBlurColor="#bac5dd"
           segments={20}
           renderOpenedContent={(image) => {
@@ -178,6 +178,13 @@ function createStoryOverlayElement(story: SharedStory, imageSrc: string) {
   card.className = "story-open-card";
   card.setAttribute("aria-label", story.title);
 
+  const closeButton = document.createElement("button");
+  closeButton.className = "story-open-card__close";
+  closeButton.dataset.dgClose = "true";
+  closeButton.setAttribute("aria-label", "Close story");
+  closeButton.type = "button";
+  closeButton.textContent = "×";
+
   const imageWrap = document.createElement("div");
   imageWrap.className = "story-open-card__image";
   const image = document.createElement("img");
@@ -216,7 +223,7 @@ function createStoryOverlayElement(story: SharedStory, imageSrc: string) {
   takeaway.append(takeawayIcon, takeawayText);
 
   copy.append(badges, title, prompt, body, takeaway);
-  card.append(imageWrap, copy);
+  card.append(closeButton, imageWrap, copy);
 
   return card;
 }

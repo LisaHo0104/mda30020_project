@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { HpvFactsQuiz } from "@/components/hpv-facts-quiz";
 import { ScrollFloat, ScrollFloatItem } from "@/components/scroll-float";
 import { SharedStoriesGallery } from "@/components/shared-stories-gallery";
 import { ShinyText } from "@/components/shiny-text";
@@ -348,6 +349,9 @@ export default function Home() {
               />
             ))}
           </div>
+          <ScrollFloatItem className="mt-6">
+            <HpvFactsQuiz />
+          </ScrollFloatItem>
         </div>
       </section>
 

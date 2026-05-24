@@ -383,6 +383,7 @@ export default function DomeGallery({
 
   useEffect(() => {
     const scrim = scrimRef.current;
+    const viewer = viewerRef.current;
     if (!scrim) return;
     const close = () => {
       if (performance.now() - openStartedAtRef.current < 250) return;
@@ -462,8 +463,7 @@ export default function DomeGallery({
                 el.style.transition = "";
                 el.style.opacity = "";
                 openingRef.current = false;
-                if (!draggingRef.current && rootRef.current?.getAttribute("data-enlarging") !== "true")
-                  document.body.classList.remove("dg-scroll-lock");
+                if (!draggingRef.current && rootRef.current?.getAttribute("data-enlarging") !== "true") unlockScroll();
               }, 300);
             });
           });
@@ -471,13 +471,22 @@ export default function DomeGallery({
       };
       animatingOverlay.addEventListener("transitionend", cleanup, { once: true });
     };
+    const onViewerClick = (event) => {
+      if (!(event.target instanceof Element)) return;
+      if (!event.target.closest("[data-dg-close]")) return;
+      event.preventDefault();
+      event.stopPropagation();
+      close();
+    };
     scrim.addEventListener("click", close);
+    viewer?.addEventListener("click", onViewerClick);
     const onKey = (e) => {
       if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);
     return () => {
       scrim.removeEventListener("click", close);
+      viewer?.removeEventListener("click", onViewerClick);
       window.removeEventListener("keydown", onKey);
     };
   }, [enlargeTransitionMs, unlockScroll]);
