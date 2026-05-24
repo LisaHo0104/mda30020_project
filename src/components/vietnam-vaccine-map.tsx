@@ -72,7 +72,7 @@ const VNVC_POPUP_IMAGE_URL =
   "https://vnvc.vn/wp-content/uploads/2026/04/more-than-260-centers-mb.jpg";
 const VNVC_OFFICIAL_HOURS = "7:30 AM - 5:00 PM";
 const VNVC_QUALITY_LABEL = "Best quality in Vietnam";
-const NEAREST_MARKER_COLOR = "#ef233c";
+const NEAREST_MARKER_COLOR = "#a34564";
 
 const VIETNAM_HIGHLIGHT_LAYERS: LayerSpecification[] = [
   {
@@ -80,7 +80,7 @@ const VIETNAM_HIGHLIGHT_LAYERS: LayerSpecification[] = [
     source: VIETNAM_BOUNDARY_SOURCE_ID,
     type: "fill",
     paint: {
-      "fill-color": "#ffccf2",
+      "fill-color": "#f0d6d2",
       "fill-opacity": 0.36,
     },
   },
@@ -90,7 +90,7 @@ const VIETNAM_HIGHLIGHT_LAYERS: LayerSpecification[] = [
     type: "line",
     paint: {
       "line-blur": 8,
-      "line-color": "#977dff",
+      "line-color": "#a8ccd2",
       "line-opacity": 0.5,
       "line-width": 9,
     },
@@ -100,7 +100,7 @@ const VIETNAM_HIGHLIGHT_LAYERS: LayerSpecification[] = [
     source: VIETNAM_BOUNDARY_SOURCE_ID,
     type: "line",
     paint: {
-      "line-color": "#0033ff",
+      "line-color": "#102f86",
       "line-opacity": 0.85,
       "line-width": 2.4,
     },
@@ -357,7 +357,7 @@ export function VietnamVaccineMap({
                         selected
                           ? "ring-4 ring-white/70"
                           : nearestHighlight
-                            ? "ring-4 ring-red-100/80"
+                            ? "ring-4 ring-secondary/80"
                             : ""
                       }`}
                       onClick={() => selectCenter(center)}
@@ -373,7 +373,7 @@ export function VietnamVaccineMap({
                       <MarkerLabel
                         className={
                           nearestHighlight
-                            ? "rounded-full bg-red-600 px-2 py-0.5 text-[10px] font-semibold text-white shadow-sm"
+                            ? "rounded-full bg-destructive px-2 py-0.5 text-[10px] font-semibold text-primary-foreground shadow-sm"
                             : "rounded-full bg-background/95 px-2 py-0.5 text-[10px] font-semibold shadow-sm"
                         }
                         position="bottom"
@@ -542,14 +542,14 @@ function VaccineCenterRichPopup({
         <div
           className={`absolute inset-0 bg-gradient-to-t ${
             nearest
-              ? "from-red-700/85 via-red-500/20 to-transparent"
+              ? "from-destructive/85 via-destructive/20 to-transparent"
               : "from-primary/75 via-primary/10 to-transparent"
           }`}
         />
         <Badge
           className={
             nearest
-              ? "absolute bottom-2 left-2 bg-red-600 px-2 py-0.5 text-[10px] text-white"
+              ? "absolute bottom-2 left-2 bg-destructive px-2 py-0.5 text-[10px] text-primary-foreground"
               : "absolute bottom-2 left-2 bg-background/95 px-2 py-0.5 text-[10px] text-foreground"
           }
         >
@@ -559,14 +559,14 @@ function VaccineCenterRichPopup({
 
       <div className="space-y-2 p-2.5">
         <div>
-          <p className="pb-0.5 text-[10px] font-medium uppercase tracking-wide text-muted-foreground">
+          <p className="pb-0.5 text-[10px] font-medium uppercase text-muted-foreground">
             VNVC vaccination centre
           </p>
           <h3 className="text-sm leading-tight font-semibold text-foreground">
             {center.name}
           </h3>
           {nearest && (
-            <p className="mt-0.5 text-[11px] font-semibold text-red-600">
+            <p className="mt-0.5 text-[11px] font-semibold text-destructive">
               {formatDistance(nearest.distanceKm)} from your search origin
             </p>
           )}
@@ -818,24 +818,24 @@ function formatDistance(distanceKm: number) {
 
 function getMarkerColor(regionId: string) {
   const exactColors: Record<string, string> = {
-    "can-tho": "#ff8a3d",
-    "da-nang": "#25c887",
-    "hai-phong": "#9b7dff",
-    "ha-noi": "#ff6faf",
-    "khanh-hoa": "#2dc5d3",
-    "tp-ho-chi-minh": "#4e7dff",
+    "can-tho": "#c78b74",
+    "da-nang": "#6aa9a7",
+    "hai-phong": "#8292c6",
+    "ha-noi": "#a34564",
+    "khanh-hoa": "#8abfc6",
+    "tp-ho-chi-minh": "#102f86",
   };
   const markerPalette = [
-    "#0033ff",
-    "#977dff",
-    "#ffccf2",
-    "#25c887",
-    "#ff8a3d",
-    "#2dc5d3",
-    "#ff6faf",
-    "#5c8dff",
-    "#9b7dff",
-    "#18a886",
+    "#102f86",
+    "#8292c6",
+    "#f0d6d2",
+    "#6aa9a7",
+    "#c78b74",
+    "#8abfc6",
+    "#a34564",
+    "#6d82bc",
+    "#9ca9d0",
+    "#5d938f",
   ];
 
   if (exactColors[regionId]) {

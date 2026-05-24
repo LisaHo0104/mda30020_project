@@ -16,6 +16,9 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ScrollFloat, ScrollFloatItem } from "@/components/scroll-float";
+import { SharedStoriesGallery } from "@/components/shared-stories-gallery";
+import { ShinyText } from "@/components/shiny-text";
 import { VietnamVaccineMap } from "@/components/vietnam-vaccine-map";
 import { vaccineMapRegions, vnvcCenterCount } from "@/data/vnvc-centers";
 import {
@@ -222,50 +225,57 @@ const socialNavItems = socialSubtabs.map((item) => ({
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground">
-      <header className="absolute inset-x-0 top-0 z-50 bg-transparent">
+      <header className="fixed inset-x-0 top-0 z-50 bg-transparent px-3 pt-3 sm:px-5">
         <nav
           aria-label="Main navigation"
-          className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 sm:pt-5 lg:px-8"
+          className="site-nav mx-auto max-w-7xl"
         >
-          <div className="flex items-center justify-between gap-4">
-            <a className="flex items-center gap-2 font-semibold" href="#home">
-              <span className="grid size-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-                <ShieldCheck aria-hidden="true" size={18} />
-              </span>
-              Love Shield
-            </a>
-            <MobileNav />
-          </div>
+          <div className="site-nav-shell flex flex-col gap-2 px-3 py-3 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
+            <div className="flex items-center justify-between gap-4">
+              <a className="site-brand flex items-center gap-2 text-lg font-semibold" href="#home">
+                <span className="site-brand-mark grid size-9 place-items-center bg-primary text-primary-foreground">
+                  <ShieldCheck aria-hidden="true" size={18} />
+                </span>
+                <span className="brand-lockup">
+                  <span className="brand-script">Love</span>
+                  {" "}
+                  <span className="brand-serif">Shield</span>
+                </span>
+              </a>
+              <MobileNav />
+            </div>
 
-          <div className="mt-3 hidden flex-wrap items-center gap-1 lg:flex">
-            <NavDropdown label="About Campaign" items={aboutNavItems} />
-            <Button asChild className="h-9" variant="ghost">
-              <a href="#hpv-facts">HPV Facts</a>
-            </Button>
-            <Button asChild className="h-9" variant="ghost">
-              <a href="#vaccine-map">Vaccine map</a>
-            </Button>
-            <NavDropdown label="Social media content" items={socialNavItems} />
-            {heroActivities.map((activity) => (
-              <Button
-                asChild
-                className="h-9 px-2.5 text-[0.8rem]"
-                key={activity.id}
-                variant="ghost"
-              >
-                <a href={`#${activity.id}`}>{activity.title}</a>
+            <div className="site-nav-links hidden flex-wrap items-center gap-1 lg:flex lg:justify-end">
+              <NavDropdown label="About Campaign" items={aboutNavItems} />
+              <Button asChild className="site-nav-button h-9" variant="ghost">
+                <a href="#hpv-facts">HPV Facts</a>
               </Button>
-            ))}
+              <Button asChild className="site-nav-button h-9" variant="ghost">
+                <a href="#vaccine-map">Vaccine map</a>
+              </Button>
+              <NavDropdown label="Social media content" items={socialNavItems} />
+              {heroActivities.map((activity) => (
+                <Button
+                  asChild
+                  className="site-nav-button h-9 px-2.5 text-[0.8rem]"
+                  key={activity.id}
+                  variant="ghost"
+                >
+                  <a href={`#${activity.id}`}>{activity.title}</a>
+                </Button>
+              ))}
+            </div>
           </div>
         </nav>
       </header>
 
       <section
-        className="hero-scene relative isolate overflow-hidden px-4 pb-12 pt-32 sm:px-6 sm:pt-36 lg:px-8"
+        className="hero-scene relative isolate overflow-hidden px-4 pb-16 pt-32 sm:px-6 sm:pt-36 lg:px-8"
         id="home"
       >
+        <DecorativeHeroCards />
         <div className="mx-auto max-w-7xl">
-          <div className="max-w-2xl py-4 sm:py-8">
+          <div className="relative z-10 max-w-2xl py-4 sm:py-8">
             <Badge
               className="gap-2 border-border/80 bg-card px-3 py-1 text-card-foreground"
               variant="outline"
@@ -273,12 +283,18 @@ export default function Home() {
               <Flag aria-hidden="true" size={14} />
               Vietnamese Gen Z aged 18-29
             </Badge>
-            <h1 className="mt-5 text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
-              Love Shield
+            <h1 className="mt-5 text-6xl font-semibold text-foreground sm:text-7xl">
+              <span className="brand-lockup">
+                <span className="brand-script">Love</span>
+                {" "}
+                <span className="brand-serif">Shield</span>
+              </span>
             </h1>
             <p className="mt-5 max-w-2xl text-2xl font-medium leading-tight text-primary sm:text-3xl">
-              Being informed about HPV is a green flag. Protect yourself,
-              protect the people you care about.
+              <ShinyText>
+                Being informed about HPV is a green flag. Protect yourself,
+                protect the people you care about.
+              </ShinyText>
             </p>
             <p className="mt-5 max-w-xl text-base leading-7 text-foreground/75 sm:text-lg">
               Love Shield is a proposed social media campaign designed to raise
@@ -335,6 +351,19 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="px-4 py-16 sm:px-6 lg:px-8" id="shared-stories">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeader
+            eyebrow="Shared Stories"
+            title="Stories that make prevention feel human"
+            text="Anonymous-style peer stories show how HPV prevention can become easier to discuss through friendship, dating, family, campus life, and everyday fact checking."
+          />
+          <ScrollFloatItem className="mt-8">
+            <SharedStoriesGallery />
+          </ScrollFloatItem>
+        </div>
+      </section>
+
       <section className="px-4 py-16 sm:px-6 lg:px-8" id="vaccine-map">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
@@ -343,12 +372,12 @@ export default function Home() {
             text={`Click any dot to view one of ${vnvcCenterCount} VNVC centres from the official centre finder, open directions, and register through VNVC channels. This supports the campaign goal of moving from awareness to credible next steps.`}
           />
 
-          <div className="mt-8">
+          <ScrollFloatItem className="mt-8">
             <VietnamVaccineMap
               bookingUrl="https://vnvc.vn/dang-ky-tiem-chung/"
               regions={vaccineMapRegions}
             />
-          </div>
+          </ScrollFloatItem>
         </div>
       </section>
 
@@ -362,17 +391,19 @@ export default function Home() {
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
             {platformContent.map((platform) => (
-              <Card className="border-border/80 bg-card" key={platform.title}>
-                <CardHeader>
-                  <Badge className="w-fit" variant="secondary">
-                    {platform.title}
-                  </Badge>
-                  <CardTitle>{platform.role}</CardTitle>
-                  <CardDescription className="leading-6">
-                    {platform.focus}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+              <ScrollFloatItem className="h-full" key={platform.title}>
+                <Card className="h-full border-border/80 bg-card">
+                  <CardHeader>
+                    <Badge className="w-fit" variant="secondary">
+                      {platform.title}
+                    </Badge>
+                    <CardTitle>{platform.role}</CardTitle>
+                    <CardDescription className="leading-6">
+                      {platform.focus}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </ScrollFloatItem>
             ))}
           </div>
 
@@ -408,29 +439,31 @@ export default function Home() {
           />
           <div className="mt-8 grid gap-3 md:grid-cols-2">
             {objectives.map((objective, index) => (
-              <Card className="border-border/80 bg-card" key={objective}>
-                <CardHeader>
-                  <Badge className="w-fit" variant="secondary">
-                    Objective {index + 1}
-                  </Badge>
-                  <CardDescription className="text-sm font-medium leading-6 text-foreground">
-                    {objective}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
+              <ScrollFloatItem className="h-full" key={objective}>
+                <Card className="h-full border-border/80 bg-card">
+                  <CardHeader>
+                    <Badge className="w-fit" variant="secondary">
+                      Objective {index + 1}
+                    </Badge>
+                    <CardDescription className="text-sm font-medium leading-6 text-foreground">
+                      {objective}
+                    </CardDescription>
+                  </CardHeader>
+                </Card>
+              </ScrollFloatItem>
             ))}
           </div>
         </div>
       </section>
 
       <footer className="border-t bg-card px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
+        <ScrollFloatItem className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-muted-foreground md:flex-row md:items-center md:justify-between">
           <p className="font-medium text-foreground">
             Love Shield: HPV awareness and vaccine consideration for Vietnamese
             Gen Z aged 18-29.
           </p>
           <p>#LoveShield #HPVGreenFlag #TogetherAgainstHPV</p>
-        </div>
+        </ScrollFloatItem>
       </footer>
     </main>
   );
@@ -439,7 +472,7 @@ export default function Home() {
 function NavDropdown({ label, items }: { label: string; items: NavItem[] }) {
   return (
     <details className="group relative">
-      <summary className="flex h-9 cursor-pointer list-none items-center gap-1.5 rounded-lg px-2.5 text-sm font-medium transition hover:bg-muted hover:text-foreground [&::-webkit-details-marker]:hidden">
+      <summary className="site-nav-trigger flex h-9 cursor-pointer list-none items-center gap-1.5 px-2.5 text-sm font-medium transition [&::-webkit-details-marker]:hidden">
         {label}
         <ChevronDown
           aria-hidden="true"
@@ -447,7 +480,7 @@ function NavDropdown({ label, items }: { label: string; items: NavItem[] }) {
           size={14}
         />
       </summary>
-      <div className="absolute left-0 top-11 z-50 grid w-72 gap-1 rounded-lg border bg-popover p-1 text-popover-foreground shadow-md">
+      <div className="site-nav-popover absolute left-0 top-11 z-50 grid w-72 gap-1 bg-popover p-2 text-popover-foreground">
         <p className="px-2 py-1 text-xs font-medium text-muted-foreground">
           {label}
         </p>
@@ -466,14 +499,39 @@ function NavDropdown({ label, items }: { label: string; items: NavItem[] }) {
   );
 }
 
+function DecorativeHeroCards() {
+  return (
+    <div aria-hidden="true" className="hero-card-field">
+      <div className="hero-card hero-card--ink">
+        <span className="hero-card__title">
+          Love
+          <span className="hero-card__script">Shield</span>
+        </span>
+        <span className="star-mark" />
+      </div>
+      <div className="hero-card hero-card--paper">
+        <span className="hero-card__title">
+          care
+          <span className="hero-card__script">confidence</span>
+        </span>
+      </div>
+      <div className="hero-card hero-card--gradient">
+        <span className="qr-mark" />
+        <span className="crescent-mark" />
+        <span className="star-mark" />
+      </div>
+    </div>
+  );
+}
+
 function MobileNav() {
   return (
     <details className="group relative lg:hidden">
-      <summary className="grid size-9 cursor-pointer list-none place-items-center rounded-lg border bg-background transition hover:bg-muted [&::-webkit-details-marker]:hidden">
+      <summary className="site-mobile-trigger grid size-9 cursor-pointer list-none place-items-center bg-background transition [&::-webkit-details-marker]:hidden">
         <Menu aria-hidden="true" size={18} />
         <span className="sr-only">Open navigation</span>
       </summary>
-      <div className="absolute right-0 top-12 z-50 grid max-h-[75vh] w-[min(22rem,calc(100vw-2rem))] gap-1 overflow-y-auto rounded-lg border bg-popover p-2 text-popover-foreground shadow-md">
+      <div className="site-nav-popover absolute right-0 top-12 z-50 grid max-h-[75vh] w-[min(22rem,calc(100vw-2rem))] gap-1 overflow-y-auto bg-popover p-2 text-popover-foreground">
         <MobileNavGroup items={aboutNavItems} label="About Campaign" />
         <Separator />
         <a
@@ -534,13 +592,13 @@ function SectionHeader({
   text: string;
 }) {
   return (
-    <div className="max-w-3xl">
+    <ScrollFloatItem className="max-w-3xl">
       <Badge className="bg-secondary text-secondary-foreground">{eyebrow}</Badge>
-      <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-        {title}
+      <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">
+        <ScrollFloat text={title} />
       </h2>
       <p className="mt-4 text-base leading-7 text-foreground/75">{text}</p>
-    </div>
+    </ScrollFloatItem>
   );
 }
 
@@ -556,21 +614,23 @@ function DocumentSection({
   paragraphs: string[];
 }) {
   return (
-    <Card className="scroll-mt-40 border-border/80 bg-card" id={id}>
-      <CardHeader>
-        <Badge className="w-fit" variant="outline">
-          {eyebrow}
-        </Badge>
-        <CardTitle className="text-2xl font-semibold">{title}</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <div className="grid gap-4 text-sm leading-6 text-card-foreground/75 lg:grid-cols-3">
-          {paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </div>
-      </CardContent>
-    </Card>
+    <ScrollFloatItem className="scroll-mt-40" id={id}>
+      <Card className="border-border/80 bg-card">
+        <CardHeader>
+          <Badge className="w-fit" variant="outline">
+            {eyebrow}
+          </Badge>
+          <CardTitle className="text-2xl font-semibold">{title}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="grid gap-4 text-sm leading-6 text-card-foreground/75 lg:grid-cols-3">
+            {paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
+    </ScrollFloatItem>
   );
 }
 
@@ -584,15 +644,17 @@ function InfoCard({
   text: string;
 }) {
   return (
-    <Card className="min-h-60 border-border/80 bg-card shadow-sm">
-      <CardHeader>
-        <div className="mb-2 grid size-11 place-items-center rounded-lg bg-accent text-accent-foreground">
-          <Icon aria-hidden="true" />
-        </div>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription className="leading-6">{text}</CardDescription>
-      </CardHeader>
-    </Card>
+    <ScrollFloatItem className="h-full">
+      <Card className="h-full min-h-60 border-border/80 bg-card shadow-sm">
+        <CardHeader>
+          <div className="mb-2 grid size-11 place-items-center rounded-lg bg-accent text-accent-foreground">
+            <Icon aria-hidden="true" />
+          </div>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription className="leading-6">{text}</CardDescription>
+        </CardHeader>
+      </Card>
+    </ScrollFloatItem>
   );
 }
 
@@ -614,32 +676,34 @@ function HeroContentCard({
   audience: string;
 }) {
   return (
-    <Card className="scroll-mt-40 border-border/80 bg-card" id={id}>
-      <CardHeader>
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <Badge className="w-fit" variant="secondary">
-              Social media content
-            </Badge>
-            <CardTitle className="mt-3 text-2xl font-semibold">
-              {title}
-            </CardTitle>
+    <ScrollFloatItem className="scroll-mt-40" id={id}>
+      <Card className="border-border/80 bg-card">
+        <CardHeader>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <Badge className="w-fit" variant="secondary">
+                Social media content
+              </Badge>
+              <CardTitle className="mt-3 text-2xl font-semibold">
+                {title}
+              </CardTitle>
+            </div>
+            <HeartHandshake aria-hidden="true" className="text-chart-3" />
           </div>
-          <HeartHandshake aria-hidden="true" className="text-chart-3" />
-        </div>
-      </CardHeader>
-      <CardContent>
-        <DefinitionList
-          rows={[
-            ["Description", description],
-            ["Content execution", execution],
-            ["Content outputs", outputs],
-            ["Key message", message],
-            ["Target audience", audience],
-          ]}
-        />
-      </CardContent>
-    </Card>
+        </CardHeader>
+        <CardContent>
+          <DefinitionList
+            rows={[
+              ["Description", description],
+              ["Content execution", execution],
+              ["Content outputs", outputs],
+              ["Key message", message],
+              ["Target audience", audience],
+            ]}
+          />
+        </CardContent>
+      </Card>
+    </ScrollFloatItem>
   );
 }
 
@@ -663,34 +727,36 @@ function ActivitySection({
   audience: string;
 }) {
   return (
-    <Card className="scroll-mt-40 border-border/80 bg-card" id={id}>
-      <CardHeader>
-        <div className="flex items-start gap-4">
-          <span className="grid size-11 shrink-0 place-items-center rounded-lg bg-secondary text-secondary-foreground">
-            <Icon aria-hidden="true" />
-          </span>
-          <div>
-            <Badge className="w-fit bg-secondary text-secondary-foreground">
-              Hero content
-            </Badge>
-            <CardTitle className="mt-3 text-2xl font-semibold">
-              {title}
-            </CardTitle>
+    <ScrollFloatItem className="scroll-mt-40" id={id}>
+      <Card className="border-border/80 bg-card">
+        <CardHeader>
+          <div className="flex items-start gap-4">
+            <span className="grid size-11 shrink-0 place-items-center rounded-lg bg-secondary text-secondary-foreground">
+              <Icon aria-hidden="true" />
+            </span>
+            <div>
+              <Badge className="w-fit bg-secondary text-secondary-foreground">
+                Hero content
+              </Badge>
+              <CardTitle className="mt-3 text-2xl font-semibold">
+                {title}
+              </CardTitle>
+            </div>
           </div>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <DefinitionList
-          rows={[
-            ["Description", description],
-            ["Content execution", execution],
-            ["Content outputs", outputs],
-            ["Key message", message],
-            ["Target audience", audience],
-          ]}
-        />
-      </CardContent>
-    </Card>
+        </CardHeader>
+        <CardContent>
+          <DefinitionList
+            rows={[
+              ["Description", description],
+              ["Content execution", execution],
+              ["Content outputs", outputs],
+              ["Key message", message],
+              ["Target audience", audience],
+            ]}
+          />
+        </CardContent>
+      </Card>
+    </ScrollFloatItem>
   );
 }
 
@@ -698,7 +764,7 @@ function DefinitionList({ rows }: { rows: [string, string][] }) {
   return (
     <dl className="grid gap-3">
       {rows.map(([term, detail]) => (
-        <div key={term}>
+        <ScrollFloatItem key={term} y={10}>
           <Separator className="mb-3" />
           <dt className="text-xs font-semibold uppercase text-card-foreground/70">
             {term}
@@ -706,7 +772,7 @@ function DefinitionList({ rows }: { rows: [string, string][] }) {
           <dd className="mt-1 text-sm leading-6 text-card-foreground/75">
             {detail}
           </dd>
-        </div>
+        </ScrollFloatItem>
       ))}
     </dl>
   );
@@ -714,12 +780,12 @@ function DefinitionList({ rows }: { rows: [string, string][] }) {
 
 function SignalItem({ icon: Icon, text }: { icon: LucideIcon; text: string }) {
   return (
-    <div className="flex items-center gap-3">
+    <ScrollFloatItem className="flex items-center gap-3" y={10}>
       <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-secondary text-secondary-foreground">
         <Icon aria-hidden="true" size={18} />
       </span>
       {text}
-    </div>
+    </ScrollFloatItem>
   );
 }
 
