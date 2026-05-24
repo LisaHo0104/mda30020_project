@@ -151,7 +151,7 @@ export function GreenFlagVaccineCarousel({
 
   return (
     <ScrollFloatItem className="scroll-mt-40" id={id}>
-      <div className="grid gap-4">
+      <div className="green-flag-carousel-scale grid gap-4">
         <Carousel
           aria-label="The Green Flag Vaccine carousel"
           className="mx-auto w-full max-w-[31.25rem]"

@@ -205,15 +205,6 @@ const heroActivities = [
   },
 ];
 
-const objectives = [
-  "Increase baseline HPV awareness among Vietnamese Gen Z aged 18-29 by 30% within six months.",
-  "Reduce belief in key HPV misconceptions by 20% within six months.",
-  "Increase intention to seek HPV vaccine information or consultation by 25% within six months.",
-  "Achieve at least 500,000 total impressions across TikTok, Instagram, and Facebook by the end of the three-week launch phase.",
-  "Generate at least 1,000 social participation actions using #LoveShield, #HPVGreenFlag, and #TogetherAgainstHPV.",
-  "Engage at least 300 students during the V-Shield Booth university activation.",
-];
-
 const aboutNavItems = aboutSections.map((section) => ({
   href: `#${section.id}`,
   label: section.title,
@@ -272,46 +263,83 @@ export default function Home() {
       </header>
 
       <section
-        className="hero-scene relative isolate overflow-hidden px-4 pb-16 pt-32 sm:px-6 sm:pt-36 lg:px-8"
+        className="hero-scene relative isolate overflow-hidden px-4 pb-3 pt-32 sm:px-6 sm:pb-4 sm:pt-36 lg:px-8"
         id="home"
       >
         <DecorativeHeroCards />
         <div className="mx-auto max-w-7xl">
-          <div className="relative z-10 max-w-2xl py-4 sm:py-8">
-            <Badge
-              className="gap-2 border-border/80 bg-card px-3 py-1 text-card-foreground"
-              variant="outline"
-            >
-              <Flag aria-hidden="true" size={14} />
-              Vietnamese Gen Z aged 18-29
-            </Badge>
-            <h1 className="mt-5 text-6xl font-semibold text-foreground sm:text-7xl">
-              <span className="brand-lockup">
-                <span className="brand-script">Love</span>
-                {" "}
-                <span className="brand-serif">Shield</span>
-              </span>
-            </h1>
-            <p className="mt-5 max-w-2xl text-2xl font-medium leading-tight text-primary sm:text-3xl">
-              <ShinyText>
-                Being informed about HPV is a green flag. Protect yourself,
-                protect the people you care about.
-              </ShinyText>
-            </p>
-            <p className="mt-5 max-w-xl text-base leading-7 text-foreground/75 sm:text-lg">
+          <div className="relative z-10 pb-0 pt-4 sm:pb-1 sm:pt-8">
+            <div className="max-w-2xl">
+              <Badge
+                className="gap-2 border-border/80 bg-card px-3 py-1 text-card-foreground"
+                variant="outline"
+              >
+                <Flag aria-hidden="true" size={14} />
+                Vietnamese Gen Z aged 18-29
+              </Badge>
+              <h1 className="mt-5 text-6xl font-semibold text-foreground sm:text-7xl">
+                <span className="brand-lockup">
+                  <span className="brand-script">Love</span>
+                  {" "}
+                  <span className="brand-serif">Shield</span>
+                </span>
+              </h1>
+              <p className="mt-5 max-w-2xl text-2xl font-medium leading-tight text-primary sm:text-3xl">
+                <ShinyText>
+                  Being informed about HPV is a green flag. Protect yourself,
+                  protect the people you care about.
+                </ShinyText>
+              </p>
+            </div>
+
+            <p className="mt-6 max-w-xl text-base leading-7 text-foreground/75 sm:text-lg">
               Love Shield is a proposed social media campaign designed to raise
               HPV awareness and encourage vaccine consideration among Vietnamese
               Gen Z aged 18-29.
             </p>
+
+            <div className="hero-signal-grid mt-6 grid max-w-5xl gap-3 text-sm font-medium text-muted-foreground sm:grid-cols-3">
+              <SignalItem icon={MonitorSmartphone} text="TikTok, Instagram, and Facebook" />
+              <SignalItem icon={Users} text="Urban and semi-urban Gen Z" />
+              <SignalItem icon={Stethoscope} text="VNVC as proposed health partner" />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-y bg-card px-4 py-5 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-7xl gap-3 text-sm font-medium text-muted-foreground sm:grid-cols-3">
-          <SignalItem icon={MonitorSmartphone} text="TikTok, Instagram, and Facebook" />
-          <SignalItem icon={Users} text="Urban and semi-urban Gen Z" />
-          <SignalItem icon={Stethoscope} text="VNVC as proposed health partner" />
+      <section className="px-4 py-10 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <GreenFlagVaccineCarousel id="green-flag-vaccine" />
+        </div>
+      </section>
+
+      <section className="px-4 py-16 sm:px-6 lg:px-8" id="shared-stories">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeader
+            eyebrow="Shared Stories"
+            title="Stories that make prevention feel human"
+            text="Anonymous-style peer stories show how HPV prevention can become easier to discuss through friendship, dating, family, campus life, and everyday fact checking."
+          />
+          <ScrollFloatItem className="mt-8">
+            <SharedStoriesGallery />
+          </ScrollFloatItem>
+        </div>
+      </section>
+
+      <section className="px-4 py-16 sm:px-6 lg:px-8" id="vaccine-map">
+        <div className="mx-auto max-w-7xl">
+          <SectionHeader
+            eyebrow="Take Action"
+            title="Find HPV vaccination support in Vietnam"
+            text={`Click any dot to view one of ${vnvcCenterCount} VNVC centres from the official centre finder, open directions, and register through VNVC channels. This supports the campaign goal of moving from awareness to credible next steps.`}
+          />
+
+          <ScrollFloatItem className="mt-8">
+            <VietnamVaccineMap
+              bookingUrl="https://vnvc.vn/dang-ky-tiem-chung/"
+              regions={vaccineMapRegions}
+            />
+          </ScrollFloatItem>
         </div>
       </section>
 
@@ -356,36 +384,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="px-4 py-16 sm:px-6 lg:px-8" id="shared-stories">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeader
-            eyebrow="Shared Stories"
-            title="Stories that make prevention feel human"
-            text="Anonymous-style peer stories show how HPV prevention can become easier to discuss through friendship, dating, family, campus life, and everyday fact checking."
-          />
-          <ScrollFloatItem className="mt-8">
-            <SharedStoriesGallery />
-          </ScrollFloatItem>
-        </div>
-      </section>
-
-      <section className="px-4 py-16 sm:px-6 lg:px-8" id="vaccine-map">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeader
-            eyebrow="Take Action"
-            title="Find HPV vaccination support in Vietnam"
-            text={`Click any dot to view one of ${vnvcCenterCount} VNVC centres from the official centre finder, open directions, and register through VNVC channels. This supports the campaign goal of moving from awareness to credible next steps.`}
-          />
-
-          <ScrollFloatItem className="mt-8">
-            <VietnamVaccineMap
-              bookingUrl="https://vnvc.vn/dang-ky-tiem-chung/"
-              regions={vaccineMapRegions}
-            />
-          </ScrollFloatItem>
-        </div>
-      </section>
-
       <section className="px-4 py-16 sm:px-6 lg:px-8" id="social-media-content">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
@@ -413,13 +411,11 @@ export default function Home() {
           </div>
 
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
-            {socialSubtabs.map((item) => (
-              item.id === "green-flag-vaccine" ? (
-                <GreenFlagVaccineCarousel id={item.id} key={item.id} />
-              ) : (
+            {socialSubtabs
+              .filter((item) => item.id !== "green-flag-vaccine")
+              .map((item) => (
                 <HeroContentCard key={item.id} {...item} />
-              )
-            ))}
+              ))}
           </div>
         </div>
       </section>
@@ -434,32 +430,6 @@ export default function Home() {
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
             {heroActivities.map((activity) => (
               <ActivitySection key={activity.id} {...activity} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <SectionHeader
-            eyebrow="SMART Objectives"
-            title="Measurement goals"
-            text="The performance of Love Shield is guided by long-term communication outcomes and short-term campaign performance metrics."
-          />
-          <div className="mt-8 grid gap-3 md:grid-cols-2">
-            {objectives.map((objective, index) => (
-              <ScrollFloatItem className="h-full" key={objective}>
-                <Card className="h-full border-border/80 bg-card">
-                  <CardHeader>
-                    <Badge className="w-fit" variant="secondary">
-                      Objective {index + 1}
-                    </Badge>
-                    <CardDescription className="text-sm font-medium leading-6 text-foreground">
-                      {objective}
-                    </CardDescription>
-                  </CardHeader>
-                </Card>
-              </ScrollFloatItem>
             ))}
           </div>
         </div>
@@ -773,7 +743,7 @@ function DefinitionList({ rows }: { rows: [string, string][] }) {
   return (
     <dl className="grid gap-3">
       {rows.map(([term, detail]) => (
-        <ScrollFloatItem key={term} y={10}>
+        <ScrollFloatItem key={term}>
           <Separator className="mb-3" />
           <dt className="text-xs font-semibold uppercase text-card-foreground/70">
             {term}
@@ -789,7 +759,7 @@ function DefinitionList({ rows }: { rows: [string, string][] }) {
 
 function SignalItem({ icon: Icon, text }: { icon: LucideIcon; text: string }) {
   return (
-    <ScrollFloatItem className="flex items-center gap-3" y={10}>
+    <ScrollFloatItem className="flex items-center gap-3">
       <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-secondary text-secondary-foreground">
         <Icon aria-hidden="true" size={18} />
       </span>
