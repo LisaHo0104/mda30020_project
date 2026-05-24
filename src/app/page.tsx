@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { GreenFlagVaccineCarousel } from "@/components/green-flag-vaccine-carousel";
 import { HpvFactsQuiz } from "@/components/hpv-facts-quiz";
 import { ScrollFloat, ScrollFloatItem } from "@/components/scroll-float";
 import { SharedStoriesGallery } from "@/components/shared-stories-gallery";
@@ -413,7 +414,11 @@ export default function Home() {
 
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
             {socialSubtabs.map((item) => (
-              <HeroContentCard key={item.id} {...item} />
+              item.id === "green-flag-vaccine" ? (
+                <GreenFlagVaccineCarousel id={item.id} key={item.id} />
+              ) : (
+                <HeroContentCard key={item.id} {...item} />
+              )
             ))}
           </div>
         </div>

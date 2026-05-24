@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Parisienne } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  DM_Sans,
+  Parisienne,
+  Playfair_Display,
+} from "next/font/google";
 import "./globals.css";
 import "@/components/dome-gallery.css";
 
@@ -18,6 +23,21 @@ const parisienne = Parisienne({
   display: "swap",
 });
 
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
+  subsets: ["latin", "latin-ext"],
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin", "latin-ext"],
+  weight: ["600", "700"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Love Shield | HPV Green Flag Campaign",
   description:
@@ -30,7 +50,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${parisienne.variable}`}>
+    <html
+      lang="en"
+      className={`${cormorant.variable} ${parisienne.variable} ${dmSans.variable} ${playfairDisplay.variable}`}
+    >
       <body suppressHydrationWarning>{children}</body>
     </html>
   );

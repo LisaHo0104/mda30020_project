@@ -130,6 +130,30 @@ select {
   color: #0b235f;
 }
 
+@keyframes green-flag-twinkle {
+  0%,
+  100% {
+    opacity: 0.14;
+    transform: scale(0.7);
+  }
+
+  50% {
+    opacity: 0.86;
+    transform: scale(1.18);
+  }
+}
+
+.green-flag-spark {
+  animation: green-flag-twinkle 2.4s infinite;
+}
+
+.green-flag-slide-shell {
+  background-clip: padding-box;
+  clip-path: inset(0 round 24px);
+  isolation: isolate;
+  transform: translateZ(0);
+}
+
 .hero-scene {
   background: var(--page-gradient);
 }
@@ -870,4 +894,3 @@ details[open] > .site-nav-trigger,
     @apply hidden!;
   }
 }
-
