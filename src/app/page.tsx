@@ -5,7 +5,6 @@ import {
   CalendarHeart,
   ChevronDown,
   Flag,
-  HeartHandshake,
   Menu,
   MessagesSquare,
   MonitorSmartphone,
@@ -20,8 +19,13 @@ import { GreenFlagVaccineCarousel } from "@/components/green-flag-vaccine-carous
 import { HpvFactsQuiz } from "@/components/hpv-facts-quiz";
 import { ScrollFloat, ScrollFloatItem } from "@/components/scroll-float";
 import { SharedStoriesGallery } from "@/components/shared-stories-gallery";
+import { ShieldBadgeCarousel } from "@/components/shield-badge-carousel";
+import { ShieldStoriesCarousel } from "@/components/shield-stories-carousel";
 import { ShinyText } from "@/components/shiny-text";
+import { TogetherMovementCarousel } from "@/components/together-movement-carousel";
 import { VietnamVaccineMap } from "@/components/vietnam-vaccine-map";
+import { VShieldBoothCarousel } from "@/components/v-shield-booth-carousel";
+import { WhyMenVaccineCarousel } from "@/components/why-men-vaccine-carousel";
 import { vaccineMapRegions, vnvcCenterCount } from "@/data/vnvc-centers";
 import {
   Card,
@@ -410,12 +414,8 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="mt-8 grid gap-5 lg:grid-cols-2">
-            {socialSubtabs
-              .filter((item) => item.id !== "green-flag-vaccine")
-              .map((item) => (
-                <HeroContentCard key={item.id} {...item} />
-              ))}
+          <div className="mt-8">
+            <WhyMenVaccineCarousel />
           </div>
         </div>
       </section>
@@ -427,10 +427,24 @@ export default function Home() {
             title="Campaign activations"
             text="The campaign uses short-form, visual, participatory, and relationship-based storytelling."
           />
-          <div className="mt-8 grid gap-5 lg:grid-cols-2">
-            {heroActivities.map((activity) => (
-              <ActivitySection key={activity.id} {...activity} />
-            ))}
+          <div className="mt-8 grid gap-5">
+            <TogetherMovementCarousel />
+            <ShieldStoriesCarousel />
+            <VShieldBoothCarousel />
+            <ShieldBadgeCarousel />
+            <div className="grid gap-5 lg:grid-cols-2">
+              {heroActivities
+                .filter(
+                  (activity) =>
+                    activity.id !== "together-movement" &&
+                    activity.id !== "shield-stories" &&
+                    activity.id !== "v-shield-booth" &&
+                    activity.id !== "shield-badge",
+                )
+                .map((activity) => (
+                  <ActivitySection key={activity.id} {...activity} />
+                ))}
+            </div>
           </div>
         </div>
       </section>
@@ -632,55 +646,6 @@ function InfoCard({
           <CardTitle>{title}</CardTitle>
           <CardDescription className="leading-6">{text}</CardDescription>
         </CardHeader>
-      </Card>
-    </ScrollFloatItem>
-  );
-}
-
-function HeroContentCard({
-  id,
-  title,
-  description,
-  execution,
-  outputs,
-  message,
-  audience,
-}: {
-  id: string;
-  title: string;
-  description: string;
-  execution: string;
-  outputs: string;
-  message: string;
-  audience: string;
-}) {
-  return (
-    <ScrollFloatItem className="scroll-mt-40" id={id}>
-      <Card className="border-border/80 bg-card">
-        <CardHeader>
-          <div className="flex items-start justify-between gap-4">
-            <div>
-              <Badge className="w-fit" variant="secondary">
-                Social media content
-              </Badge>
-              <CardTitle className="mt-3 text-2xl font-semibold">
-                {title}
-              </CardTitle>
-            </div>
-            <HeartHandshake aria-hidden="true" className="text-chart-3" />
-          </div>
-        </CardHeader>
-        <CardContent>
-          <DefinitionList
-            rows={[
-              ["Description", description],
-              ["Content execution", execution],
-              ["Content outputs", outputs],
-              ["Key message", message],
-              ["Target audience", audience],
-            ]}
-          />
-        </CardContent>
       </Card>
     </ScrollFloatItem>
   );
