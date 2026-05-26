@@ -31,10 +31,10 @@ const slides = [
     eyebrow: "Slide 1",
     summary:
       "The opening campaign visual introduces the core question and gender-inclusive message.",
-    alt: "Love Shield cover asking why men need the HPV vaccine",
-    height: 490,
-    src: "/why-men-vaccine/slides/01-cover.png",
-    width: 315,
+    alt: "Love Shield campaign board showing why men need the HPV vaccine visuals",
+    height: 1086,
+    src: "/why-men-vaccine/mockups/620f6050-9d27-492d-9989-da801c29338c.png",
+    width: 1448,
   },
   {
     title: "Still think HPV is only a women's issue?",
@@ -42,9 +42,9 @@ const slides = [
     summary:
       "The first short-form scene opens with the misconception the campaign wants to challenge.",
     alt: "TikTok scene asking if HPV is only a women's issue",
-    height: 490,
-    src: "/why-men-vaccine/slides/02-still-think.png",
-    width: 230,
+    height: 1672,
+    src: "/why-men-vaccine/mockups/228e37c1-aac3-4ef8-903b-80de38d9a732.png",
+    width: 941,
   },
   {
     title: "Men can face HPV-related health risks too",
@@ -52,9 +52,9 @@ const slides = [
     summary:
       "The second scene makes male health risks visible through simple, scannable examples.",
     alt: "TikTok scene explaining HPV-related health risks for men",
-    height: 490,
-    src: "/why-men-vaccine/slides/03-health-risks.png",
-    width: 267,
+    height: 1672,
+    src: "/why-men-vaccine/mockups/b3c3a8e8-a3f9-4c62-b6e5-cb91c4a2de80.png",
+    width: 941,
   },
   {
     title: "Real men. Real care.",
@@ -62,9 +62,9 @@ const slides = [
     summary:
       "The third scene reframes HPV prevention as mutual protection and care for the future.",
     alt: "TikTok scene saying HPV does not choose a gender and real men show real care",
-    height: 490,
-    src: "/why-men-vaccine/slides/04-real-men-real-care.png",
-    width: 248,
+    height: 1672,
+    src: "/why-men-vaccine/mockups/06290dc2-eb72-418a-bee7-2f57d612f4c4.png",
+    width: 941,
   },
   {
     title: "Care starts with being informed",
@@ -72,9 +72,9 @@ const slides = [
     summary:
       "The final short-form scene connects the message to trusted, VNVC-backed information.",
     alt: "TikTok scene with a shield graphic and VNVC-backed information message",
-    height: 490,
-    src: "/why-men-vaccine/slides/05-vnvc-backed.png",
-    width: 255,
+    height: 1672,
+    src: "/why-men-vaccine/mockups/b03e51f0-fcbf-4840-9e7c-a51d79fa25c2.png",
+    width: 941,
   },
   {
     title: "Instagram Story",
@@ -82,9 +82,9 @@ const slides = [
     summary:
       "The story format turns the misconception into an easy tap-to-answer prompt.",
     alt: "Instagram story quiz asking whether men need the HPV vaccine too",
-    height: 527,
-    src: "/why-men-vaccine/slides/06-instagram-story.png",
-    width: 355,
+    height: 1672,
+    src: "/why-men-vaccine/mockups/e7746a88-d25c-4336-a87b-80b715a72c21.png",
+    width: 941,
   },
   {
     title: "Facebook educational post",
@@ -92,9 +92,9 @@ const slides = [
     summary:
       "The Facebook post expands the message into a concise educational format with four quick reasons.",
     alt: "Facebook educational post about why men need the HPV vaccine",
-    height: 527,
-    src: "/why-men-vaccine/slides/07-facebook-post.png",
-    width: 509,
+    height: 1254,
+    src: "/why-men-vaccine/mockups/65b413dc-6d4a-4db6-a521-269c40b293f7.png",
+    width: 1254,
   },
   {
     title: "Website / VNVC info card",
@@ -102,9 +102,9 @@ const slides = [
     summary:
       "The info card gives the audience a practical next step through the VNVC centre finder.",
     alt: "Website and VNVC information card explaining why HPV vaccination matters for men",
-    height: 527,
-    src: "/why-men-vaccine/slides/08-vnvc-info-card.png",
-    width: 416,
+    height: 1672,
+    src: "/why-men-vaccine/mockups/7b1dedda-d91f-4e7d-8c28-d69f0d72f66d.png",
+    width: 941,
   },
 ];
 

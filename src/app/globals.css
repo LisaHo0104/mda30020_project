@@ -244,7 +244,8 @@ textarea.bg-background {
 }
 
 .site-nav-shell,
-.site-nav-popover {
+.site-nav-popover,
+.site-nav-menu {
   background:
     linear-gradient(135deg, rgba(255, 248, 243, 0.78) 0%, rgba(240, 214, 210, 0.5) 46%, rgba(202, 218, 234, 0.74) 100%),
     rgba(255, 248, 243, 0.56);
@@ -278,6 +279,10 @@ textarea.bg-background {
   min-width: 0;
 }
 
+.site-nav-group[open] {
+  z-index: 60;
+}
+
 .site-nav-trigger,
 .site-nav-button {
   color: rgba(11, 35, 95, 0.82);
@@ -299,9 +304,14 @@ details[open] > .site-nav-trigger,
     0 1px 8px rgba(255, 248, 243, 0.52) inset;
 }
 
-.site-nav-popover {
+.site-nav-popover,
+.site-nav-menu {
   border-radius: 1rem;
   box-shadow: 0 18px 42px rgba(10, 35, 109, 0.18);
+}
+
+.site-nav-menu {
+  border: 1px solid rgba(255, 248, 243, 0.62);
 }
 
 .hero-card-field {

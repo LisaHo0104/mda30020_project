@@ -1,0 +1,157 @@
+.carouselShell {
+  width: 100%;
+  max-width: var(--carousel-max-width);
+}
+
+.carouselContainer {
+  position: relative;
+  width: 100%;
+  height: min(72vh, 42rem);
+  min-height: 28rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 248, 243, 0.74);
+  border-radius: 1.5rem;
+  padding: 16px;
+  background: rgba(255, 248, 243, 0.42);
+  box-shadow: 0 20px 48px rgba(10, 35, 109, 0.14);
+  --outer-r: 24px;
+  --p-distance: 12px;
+}
+
+.carouselTrack {
+  display: flex;
+  height: calc(100% - 4.25rem);
+}
+
+.carouselItem {
+  position: relative;
+  display: flex;
+  height: 100%;
+  flex-shrink: 0;
+  cursor: grab;
+  overflow: hidden;
+  border: 1px solid rgba(255, 248, 243, 0.72);
+  border-radius: calc(var(--outer-r) - var(--p-distance));
+  background: rgba(255, 248, 243, 0.82);
+  box-shadow: 0 16px 38px rgba(10, 35, 109, 0.14);
+}
+
+.carouselItem:active {
+  cursor: grabbing;
+}
+
+.imageFrame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carouselImage {
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.carouselControls {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.controlButton {
+  display: inline-flex;
+  min-width: 2.75rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 248, 243, 0.72);
+  border-radius: 0.75rem;
+  background: rgba(255, 248, 243, 0.78);
+  color: #0b235f;
+  font: 600 0.875rem/1 var(--font-dm-sans), system-ui, sans-serif;
+  box-shadow: 0 10px 22px rgba(10, 35, 109, 0.12);
+  cursor: pointer;
+  backdrop-filter: blur(14px) saturate(1.08);
+  transition:
+    background 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.controlButton:hover {
+  background: rgba(255, 248, 243, 0.94);
+  box-shadow: 0 14px 28px rgba(10, 35, 109, 0.16);
+  transform: translateY(-1px);
+}
+
+.controlButton:active {
+  transform: translateY(0);
+}
+
+.pageIndicator {
+  display: inline-flex;
+  min-width: 3.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 248, 243, 0.72);
+  border-radius: 0.75rem;
+  background: rgba(255, 248, 243, 0.78);
+  color: #0b235f;
+  font: 700 0.875rem/1 var(--font-dm-sans), system-ui, sans-serif;
+  box-shadow: 0 10px 22px rgba(10, 35, 109, 0.12);
+  user-select: none;
+  backdrop-filter: blur(14px) saturate(1.08);
+}
+
+.carouselIndicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+}
+
+.carouselIndicator,
+.carouselIndicatorActive {
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    transform 150ms ease,
+    width 150ms ease;
+}
+
+.carouselIndicator {
+  background: rgba(11, 35, 95, 0.26);
+}
+
+.carouselIndicatorActive {
+  width: 1.5rem;
+  background: #0b235f;
+  transform: scale(1.05);
+}
+
+@media (max-width: 640px) {
+  .carouselContainer {
+    height: min(68vh, 36rem);
+    min-height: 24rem;
+    padding: 12px;
+  }
+
+  .carouselTrack {
+    height: calc(100% - 4rem);
+  }
+
+  .carouselControls {
+    right: 0.75rem;
+    bottom: 0.75rem;
+  }
+}

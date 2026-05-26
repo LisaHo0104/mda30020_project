@@ -1,0 +1,24 @@
+.stackFrame {
+  width: min(86vw, 34rem);
+  height: min(72vh, 43rem);
+  min-height: 27rem;
+}
+
+.cardMedia {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 248, 243, 0.86);
+}
+
+.cardImage {
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .stackFrame {
+    width: min(86vw, 24rem);
+    height: min(68vh, 34rem);
+    min-height: 23rem;
+  }
+}

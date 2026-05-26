@@ -1,0 +1,103 @@
+.stackContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  perspective: 600px;
+}
+
+.cardRotate {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+}
+
+.cardRotateDisabled {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(255, 248, 243, 0.74);
+  border-radius: 1rem;
+  background: rgba(255, 248, 243, 0.86);
+  box-shadow: 0 20px 48px rgba(10, 35, 109, 0.2);
+}
+
+.card img {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.cardImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.stackControls {
+  position: absolute;
+  right: 0.875rem;
+  bottom: 0.875rem;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+
+.controlButton {
+  display: inline-flex;
+  min-width: 2.75rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 248, 243, 0.72);
+  border-radius: 0.75rem;
+  background: rgba(255, 248, 243, 0.78);
+  color: #0b235f;
+  font: 600 0.875rem/1 var(--font-dm-sans), system-ui, sans-serif;
+  box-shadow: 0 10px 22px rgba(10, 35, 109, 0.12);
+  cursor: pointer;
+  backdrop-filter: blur(14px) saturate(1.08);
+  transition:
+    background 160ms ease,
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.controlButton:hover {
+  background: rgba(255, 248, 243, 0.94);
+  box-shadow: 0 14px 28px rgba(10, 35, 109, 0.16);
+  transform: translateY(-1px);
+}
+
+.controlButton:active {
+  transform: translateY(0);
+}
+
+.pageIndicator {
+  display: inline-flex;
+  min-width: 3.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 248, 243, 0.72);
+  border-radius: 0.75rem;
+  background: rgba(255, 248, 243, 0.78);
+  color: #0b235f;
+  font: 700 0.875rem/1 var(--font-dm-sans), system-ui, sans-serif;
+  box-shadow: 0 10px 22px rgba(10, 35, 109, 0.12);
+  user-select: none;
+  backdrop-filter: blur(14px) saturate(1.08);
+}
