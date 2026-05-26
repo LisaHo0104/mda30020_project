@@ -3,14 +3,23 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const aboutCampaignNavItems = [
-  { label: "Campaign Overview", href: "/#campaign-overview" },
-  { label: "About VNVC Vaccination Centre", href: "/#about-vnvc" },
-  { label: "HPV Context in Vietnam", href: "/#hpv-context-vietnam" },
+  { label: "Campaign Overview", href: "/about-campaign#campaign-overview" },
+  {
+    label: "About the VNVC Vaccination Centre",
+    href: "/about-campaign#about-vnvc",
+  },
+  {
+    label: "HPV Context in Vietnam",
+    href: "/about-campaign#hpv-context-vietnam",
+  },
   {
     label: "Existing HPV Campaign Landscape",
-    href: "/#existing-hpv-campaign-landscape",
+    href: "/about-campaign#existing-hpv-campaign-landscape",
   },
-  { label: "Digital & Media Context", href: "/#digital-media-context" },
+  {
+    label: "Digital & Media Context",
+    href: "/about-campaign#digital-media-context",
+  },
 ];
 
 const campaignActivityNavItems = [

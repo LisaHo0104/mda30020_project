@@ -195,6 +195,63 @@ select {
   background: var(--component-gradient-strong);
 }
 
+.about-campaign-page {
+  position: relative;
+  overflow: hidden;
+}
+
+.about-campaign-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(90deg, rgba(255, 248, 243, 0.16) 1px, transparent 1px),
+    linear-gradient(rgba(255, 248, 243, 0.14) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.44;
+}
+
+.about-campaign-page > * {
+  position: relative;
+  z-index: 1;
+}
+
+.about-campaign-glass-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 248, 243, 0.7);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, rgba(255, 248, 243, 0.68), rgba(240, 214, 210, 0.36) 48%, rgba(168, 204, 210, 0.36)),
+    rgba(255, 248, 243, 0.48);
+  box-shadow:
+    0 22px 55px rgba(11, 35, 95, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px) saturate(1.08);
+}
+
+.about-campaign-glass-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.38), transparent 44%);
+  opacity: 0.62;
+}
+
+.about-campaign-glass-panel p {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.38);
+}
+
+.about-campaign-glass-panel strong {
+  color: var(--primary);
+  font-weight: 700;
+}
+
 input.bg-background,
 select.bg-background,
 textarea.bg-background {
