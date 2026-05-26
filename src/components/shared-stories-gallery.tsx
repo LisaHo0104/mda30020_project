@@ -29,6 +29,8 @@ export function SharedStoriesGallery() {
     <div className="shared-stories-grid">
       <div className="story-dome-shell" aria-label="Shared story image gallery">
         <DomeGallery
+          autoSpin
+          autoSpinSpeed={1.8}
           dragDampening={2}
           fit={1}
           grayscale={false}

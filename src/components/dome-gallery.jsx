@@ -132,6 +132,8 @@ function computeItemBaseRotation(offsetX, offsetY, sizeX, sizeY, segments) {
  * @property {string=} imageBorderRadius
  * @property {string=} openedImageBorderRadius
  * @property {boolean=} grayscale
+ * @property {boolean=} autoSpin
+ * @property {number=} autoSpinSpeed
  * @property {((image: Record<string, unknown> | undefined, index: number) => void)=} onImageOpen
  * @property {((image: Record<string, unknown> | undefined, index: number, src: string) => Node | undefined)=} renderOpenedContent
  */
@@ -157,6 +159,8 @@ export default function DomeGallery({
   imageBorderRadius = "30px",
   openedImageBorderRadius = "30px",
   grayscale = true,
+  autoSpin = false,
+  autoSpinSpeed = 2.5,
   onImageOpen = undefined,
   renderOpenedContent = undefined,
 }) {
@@ -194,12 +198,12 @@ export default function DomeGallery({
 
   const items = useMemo(() => buildItems(images, segments), [images, segments]);
 
-  const applyTransform = (xDeg, yDeg) => {
+  const applyTransform = useCallback((xDeg, yDeg) => {
     const el = sphereRef.current;
     if (el) {
       el.style.transform = `translateZ(calc(var(--radius) * -1)) rotateX(${xDeg}deg) rotateY(${yDeg}deg)`;
     }
-  };
+  }, []);
 
   const lockedRadiusRef = useRef(null);
 
@@ -285,11 +289,12 @@ export default function DomeGallery({
     openedImageBorderRadius,
     openedImageWidth,
     openedImageHeight,
+    applyTransform,
   ]);
 
   useEffect(() => {
     applyTransform(rotationRef.current.x, rotationRef.current.y);
-  }, []);
+  }, [applyTransform]);
 
   const stopInertia = useCallback(() => {
     if (inertiaRAF.current) {
@@ -328,8 +333,45 @@ export default function DomeGallery({
       stopInertia();
       inertiaRAF.current = requestAnimationFrame(step);
     },
-    [dragDampening, maxVerticalRotationDeg, stopInertia],
+    [applyTransform, dragDampening, maxVerticalRotationDeg, stopInertia],
   );
+
+  useEffect(() => {
+    if (!autoSpin || autoSpinSpeed === 0) return;
+
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let animationFrame = null;
+    let lastTimestamp = null;
+
+    const step = (timestamp) => {
+      if (lastTimestamp === null) lastTimestamp = timestamp;
+      const deltaSeconds = Math.min((timestamp - lastTimestamp) / 1000, 0.1);
+      lastTimestamp = timestamp;
+
+      const canSpin =
+        !motionQuery.matches &&
+        !draggingRef.current &&
+        !focusedElRef.current &&
+        !openingRef.current &&
+        !inertiaRAF.current;
+
+      if (canSpin) {
+        const nextY = wrapAngleSigned(
+          rotationRef.current.y + autoSpinSpeed * deltaSeconds,
+        );
+        rotationRef.current = { x: rotationRef.current.x, y: nextY };
+        applyTransform(rotationRef.current.x, nextY);
+      }
+
+      animationFrame = requestAnimationFrame(step);
+    };
+
+    animationFrame = requestAnimationFrame(step);
+
+    return () => {
+      if (animationFrame) cancelAnimationFrame(animationFrame);
+    };
+  }, [applyTransform, autoSpin, autoSpinSpeed]);
 
   useGesture(
     {
